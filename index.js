@@ -1,19 +1,26 @@
-/*const http = require('http');
+const express=require('express')
+const app=express()
+const bodyParser=require('body-parser');
 
-const site=http.createServer(function(req,res){
-    console.log('hello World');
-    res.setHeader('Content-type','text/html');
-    console.log(req.rawHeaders);
-    res.end('<h1> Hello Class!!</h1>');
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+app.get('/',function(req,res){
+    res.send('GET send')
 });
-site.listen(3000);*/
 
-
-
-var express=require('express');
-var app = express();
-
-app.get('/', function(req,res){
-    res.send('Hello World!!')
+app.post('/',function(req,res){
+    console.log(req.body);
+    res.send('POST send')
 });
+
+app.put('/',function(req,res){
+    res.send('PUT send')
+});
+
+app.delete('/',function(req,res){
+    res.send('DELETE send')
+});
+
+
 app.listen(3000);
